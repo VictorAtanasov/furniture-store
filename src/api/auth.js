@@ -17,5 +17,15 @@ export default class Auth{
 
         return window.fetch(`${domain}/signup`, options)
             .then(res => res.json())
+            .catch('err')
+    }
+
+    static login(user){
+        const options = getOptions();
+        options.body = JSON.stringify(user);
+
+        return window.fetch(`${domain}/login`, options)
+            .then(res => res.json())
+            .catch('err')
     }
 }

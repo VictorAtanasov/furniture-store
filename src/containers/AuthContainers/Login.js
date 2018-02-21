@@ -1,7 +1,10 @@
 import React from 'react';
 import Input from '../../components/common/Input';
+import * as userActions from '../../actions/userActions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class Login extends React.Component{
+class Login extends React.Component{
     constructor(props){
         super(props);
 
@@ -24,14 +27,35 @@ export default class Login extends React.Component{
 
     formSubmit(ev){
         ev.preventDefault();
-        console.log(this.state.email, this.state.password)
+        let data = {
+            'email': this.state.email,
+            'password': this.state.password
+        }
+        this.props.loginUser(data)
+            .then(() => {
+                if(this.props.login.success){
+                    this.props.history.push('/');
+                }
+            });
+
+        this.refs.loginForm.reset();
+    }
+
+    errorMsgs(){
+        if(this.props.login.errors){
+            var arr = [];
+            for(var prop in this.props.login.errors){
+                arr.push(<li key={prop}>{prop}: {this.props.login.errors[prop]}</li>)
+            }
+            return arr
+        }
     }
 
     render(){
         return(
             <div>
                 <h2>LogIn</h2>
-                <form onSubmit={this.formSubmit}>
+                <form ref='loginForm' onSubmit={this.formSubmit}>
                     <Input
                         type='text'
                         name='email'
@@ -50,7 +74,25 @@ export default class Login extends React.Component{
                         value='Submit'
                     />
                 </form>
+                <div className={!this.props.login.success ? 'errorMsg' : 'hidden'}>
+                    <h2>{this.props.login.message}</h2>
+                    <ul>{this.errorMsgs()}</ul>
+                </div>
             </div>
         )
     }
 }
+
+
+function mapStateToProps(state){
+    return{
+        login: state.register
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators(userActions, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

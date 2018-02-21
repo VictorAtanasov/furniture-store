@@ -1,5 +1,28 @@
-import {REGISTER, REGISTER_SUCCESS} from '../actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
 
 export function registerReducer(state = { success: false }, action) {
-    return state
+    switch (action.type){
+        case actionTypes.REGISTER_SUCCESS:
+            return {
+                success: true,
+                ...action.payload
+            };
+        case actionTypes.REGISTER_FAIL:
+            return {
+                success: false,
+                ...action.payload
+            }
+        case actionTypes.LOGIN_SUCCESS:
+            return {
+                success: true,
+                ...action.payload
+            }
+        case actionTypes.LOGIN_FAIL:
+            return{
+                success: false,
+                ...action.payload
+            }
+        default:
+            return state
+    }
 }

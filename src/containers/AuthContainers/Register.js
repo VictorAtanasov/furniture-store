@@ -28,13 +28,28 @@ class Register extends React.Component{
 
     submitForm(ev){
         ev.preventDefault();
-        //console.log(this.state.name, this.state.password, this.state.name);
         let data = {
             'name': this.state.name,
             'password': this.state.password,
             'email': this.state.email
         }
         this.props.registerUser(data)
+            .then(() => {
+                if(this.props.register.success){
+                    this.props.history.push('/login')
+                }
+            })
+        this.refs.signupForm.reset();
+    }
+
+    errorMsgs(){
+        if(this.props.register.errors){
+            var arr = [];
+            for(var prop in this.props.register.errors){
+                arr.push(<li key={prop}>{prop}: {this.props.register.errors[prop]}</li>)
+            }
+            return arr
+        }
     }
 
     render(){
@@ -43,7 +58,7 @@ class Register extends React.Component{
                 <h2>
                     Register
                 </h2>
-                <form onSubmit={this.submitForm}>
+                <form ref='signupForm' onSubmit={this.submitForm}>
                     <Input
                         type='text'
                         placeholder='Email'
@@ -68,6 +83,10 @@ class Register extends React.Component{
                         className='btn'
                     />
                 </form>
+                <div className={!this.props.register.success ? 'errorMsg' : 'hidden'}>
+                    <h2>{this.props.register.message}</h2>
+                    <ul>{this.errorMsgs()}</ul>
+                </div>
             </div>
         )
     }

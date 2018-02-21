@@ -22,6 +22,25 @@
   font-size: large;
 }
 
+.errorMsg{
+  display: block
+}
+
+.block{
+  display: block
+}
+
+.hidden{
+  display: none
+}
+
+.header a{
+  margin-right: 10px
+}
+.header{
+  text-align: center
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
