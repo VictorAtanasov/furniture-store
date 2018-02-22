@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 //Components
-import Home from './components/Home';
+import Home from './containers/Home';
 import Register from './containers/AuthContainers/Register';
 import Login from './containers/AuthContainers/Login';
 import Header from './components/Header';
+import AddFurniture from './containers/FurnitureContainers/AddFurniture';
 
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            <Route path='/furniture/add' component={AddFurniture} />
           </Switch>
         </div>
       </BrowserRouter>

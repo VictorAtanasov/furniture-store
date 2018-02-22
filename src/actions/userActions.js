@@ -23,12 +23,19 @@ export function loginUser(user){
     return dispatch => {
         return auth.login(user)
             .then((res) => {
-                localStorage.setItem('authToken', res.token);
-                localStorage.setItem('user', res.user.name)
-                dispatch({
-                    type: actionTypes.LOGIN_SUCCESS,
-                    payload: res
-                })
+                if(res.success){
+                    localStorage.setItem('authToken', res.token);
+                    localStorage.setItem('user', res.user.name)
+                    dispatch({
+                        type: actionTypes.LOGIN_SUCCESS,
+                        payload: res
+                    })
+                } else {
+                    dispatch({
+                        type: actionTypes.LOGIN_FAIL,
+                        payload: res
+                    })
+                }
             })
             .catch((res) => {
                 dispatch({
