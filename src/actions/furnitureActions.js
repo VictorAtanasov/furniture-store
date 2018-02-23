@@ -24,3 +24,27 @@ export function addFurniture(data){
             })
     }
 }
+
+export function getAllFurniture(page){
+    return dispatch => {
+        return furnitureApi.getAllFurnitures(page)
+            .then((res) => {
+                dispatch({
+                    type: actionTypes.GET_ALL_FURNITURE,
+                    payload: res
+                })
+            })
+    }
+}
+
+export function getFurnitureDetails(id){
+    return dispatch => {
+        return furnitureApi.furnitureDetails(id)
+            .then((res) => {
+                dispatch({
+                    type: actionTypes.FURNITURE_DETAILS,
+                    payload: res
+                })
+            })
+    }
+}

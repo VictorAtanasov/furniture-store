@@ -22,8 +22,23 @@ export default class furniture{
         const options = getOptions();
         options.body = JSON.stringify(data);
 
-        return window.fetch(`${domain}/furniture/create`, options)
+        return window.fetch(`${domain}furniture/create`, options)
             .then(res => res.json())
-            .catch(err => err.json())
+            .catch('err')
+    }
+
+    static getAllFurnitures(page){
+        return window.fetch(`${domain}furniture/all?page=${page}`)
+            .then(res => res.json())
+            .catch('err')
+    }
+
+    static furnitureDetails(id){
+        const options = getOptions();
+        options.method = 'GET'
+
+        return window.fetch(`${domain}furniture/details/${id}`, options)
+            .then(res => res.json())
+            .catch('err')
     }
 }

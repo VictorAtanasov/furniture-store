@@ -37,8 +37,33 @@
 .header a{
   margin-right: 10px
 }
+
+.furnitureCard{
+  display: inline-block;
+  text-align: center;
+  margin: 40px 30px;
+}
+
+.furnitureCard h4, p{
+  margin: 0
+}
+
 .header{
   text-align: center
+}
+
+.furniture-card-image{
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+}
+
+.page-number{
+  padding: 5px;
+  border: 1px solid;
+  cursor: pointer;
+  margin-right: 1px;
 }
 
 @keyframes App-logo-spin {
