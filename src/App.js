@@ -12,6 +12,7 @@ import Login from './containers/AuthContainers/Login';
 import Header from './components/Header';
 import AddFurniture from './containers/FurnitureContainers/AddFurniture';
 import FurnitureDetails from './containers/FurnitureContainers/FurnitureDetails';
+import Profile from './containers/FurnitureContainers/Profile';
 import NotFound from './components/NotFound';
 
 
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path='/register' component={Register} />
             <Route path='/furniture/add' component={AddFurniture} />
             <Route path='/furniture/:id' component={FurnitureDetails} />
+            <Route path='/profile' component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </div>

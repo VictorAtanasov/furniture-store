@@ -42,6 +42,8 @@
   display: inline-block;
   text-align: center;
   margin: 40px 30px;
+  border: 1px solid;
+  padding: 3px;
 }
 
 .furnitureCard h4, p{
@@ -57,6 +59,20 @@
   max-height: 200px;
   width: auto;
   height: auto;
+}
+
+.profile-furniture-wrapper{
+  display: inline-block;
+  text-align: center
+}
+
+.delete-btn{
+  border: 1px solid black;
+  padding: 2px;
+  width: 30%;
+  margin: 0 auto;
+  cursor: pointer;
+  color: red
 }
 
 .page-number{

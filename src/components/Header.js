@@ -31,8 +31,24 @@ export default class Header extends React.Component{
                 <Link to='/'>Home</Link>
                 <Link to='/register'>Register</Link>
                 <Link to='/login'>Login</Link>
-                <Link to='/' onClick={this.onLogOut}>LogOut</Link>
-                <Link to='/furniture/add'>Add Furniture</Link>
+                <Link 
+                    to='/' onClick={this.onLogOut}
+                    className={this.state.user != null ? '' : 'hidden'}
+                >
+                    LogOut
+                </Link>
+                <Link 
+                    to='/furniture/add'
+                    className={this.state.user != null ? '' : 'hidden'}
+                >
+                    Add Furniture
+                </Link>
+                <Link 
+                    to='/profile'
+                    className={this.state.user != null ? '' : 'hidden'}
+                >
+                    Profile
+                </Link>
                 <div className={this.state.user != null ? 'block' : 'hidden'}>
                     <p>Hello, {this.state.user}</p>
                 </div>

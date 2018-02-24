@@ -17,7 +17,7 @@ export default class Auth{
 
         return window.fetch(`${domain}/signup`, options)
             .then(res => res.json())
-            .catch(err => err.json())
+            .catch(err => console.log(err))
     }
 
     static login(user){
@@ -26,6 +26,6 @@ export default class Auth{
 
         return window.fetch(`${domain}/login`, options)
             .then(res => res.json())
-            .catch(err => err.json())
+            .catch(err => console.log(err))
     }
 }

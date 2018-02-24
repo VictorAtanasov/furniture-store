@@ -21,6 +21,20 @@ export function furnitureReducer(state = { success: false }, action){
                     ...action.payload
                 }
             }
+        case actionTypes.PROFILE:
+            return {
+                success: true,
+                data: {
+                    ...action.payload
+                }
+            }
+        case actionTypes.SEARCH:
+            return {
+                success: true,
+                data: {
+                    ...action.payload
+                }
+            }
         default: 
             return state
     }

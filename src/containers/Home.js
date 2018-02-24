@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as furnitureActions from '../actions/furnitureActions';
 import Statistics from '../components/Statistics';
 import FurnitureCard from '../components/FurnitureCard';
+import Input from '../components/common/Input';
 
 class Home extends React.Component{
     constructor(props){
@@ -11,10 +12,29 @@ class Home extends React.Component{
 
         this.state = {
             users: '',
-            furniture: ''
+            furniture: '',
+            query: '',
+            searchPage: false
         }
 
         this.changePage = this.changePage.bind(this);
+        this.searchInput = this.searchInput.bind(this);
+        this.search = this.search.bind(this);
+    }
+
+    search(ev){
+        ev.preventDefault();
+        this.props.searchFurniture(this.state.query);
+        this.setState({
+            searchPage: true
+        })
+        this.refs.searchForm.reset();
+    }
+
+    searchInput(ev){
+        this.setState({
+            query: ev.target.value
+        })
     }
 
     getFurniture(){
@@ -77,13 +97,31 @@ class Home extends React.Component{
                     users={this.state.users}
                     furniture={this.state.furniture}
                 />
+                <div>
+                    <h2>Search for Furniture</h2>
+                    <form
+                        ref='searchForm'
+                        onSubmit={this.search}
+                    >
+                        <Input
+                            type='text'
+                            onChange={this.searchInput}
+                            placeholder='Search for...'
+                            name='query'
+                        />
+                        <input 
+                            type='submit'
+                            value='Search'
+                        />
+                    </form>
+                </div>
                 <div className='furnitures'>
                     <h2>
                         Furnitures
                     </h2>
                     {this.getFurniture()}
                 </div>
-                <div className='pagination'>
+                <div className={this.state.searchPage ? 'hidden' : 'pagination'}>
                     {this.pagination()}
                 </div>
             </div>

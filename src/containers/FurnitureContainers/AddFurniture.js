@@ -34,7 +34,16 @@ class AddFurniture extends React.Component{
         ev.preventDefault();
         let data = {...this.state};
         this.props.addFurniture(data);
-        //this.refs.addFurnitureForm.reset();
+        this.refs.addFurnitureForm.reset();
+        this.setState({
+            make: '',
+            model: '',
+            description: '',
+            price: 0,
+            year: 0,
+            image: '',
+            material: ''
+        })
     }
 
     errorMsgs(){
@@ -100,10 +109,10 @@ class AddFurniture extends React.Component{
                         onSubmit={this.submitForm} 
                     />
                 </form>
-                <div className={this.props.furniture.success ? 'errorMsg' : 'hidden'}>
+                {/* <div className={this.props.furniture.success ? 'errorMsg' : 'hidden'}>
                     <h2>The furniture is added successfuly</h2>
-                </div>
-                <div className={!this.props.furniture.success ? 'errorMsg' : 'hidden'}>
+                </div> */}
+                <div className={this.props.furniture.message ? 'errorMsg' : 'hidden'}>
                     <h2>{this.props.furniture.message}</h2>
                     <ul>{this.errorMsgs()}</ul>
                 </div>
